@@ -20,6 +20,7 @@ from pathlib import Path
 import numpy as np
 import joblib
 from pathlib import Path
+import boto3
 
 # ===============================
 # STYLING
@@ -68,15 +69,40 @@ APP_DIR = Path(__file__).parent
 # ===============================
 # LOAD MODEL & FEATURES
 # ===============================
-#@st.cache_resource
-
+@st.cache_resource
 def load_model_and_features():
-    model = joblib.load(APP_DIR / f"random_forest_{MODEL_VERSION}.joblib")
-    feature_names = joblib.load(APP_DIR / f"random_forest_features_{MODEL_VERSION}.pkl")
+    S3_BUCKET = "mlops-savings-models-joblib"
+
+    MODEL_FILE = f"random_forest_{MODEL_VERSION}.joblib"
+    FEATURES_FILE = f"random_forest_features_{MODEL_VERSION}.pkl"
+
+    APP_DIR = Path("/app") if Path("/app").exists() else Path(__file__).parent
+    LOCAL_MODEL_PATH = APP_DIR / MODEL_FILE
+    LOCAL_FEATURES_PATH = APP_DIR / FEATURES_FILE
+
+    s3 = boto3.client("s3")
+
+    if not LOCAL_MODEL_PATH.exists():
+        s3.download_file(
+            S3_BUCKET,
+            MODEL_FILE,
+            str(LOCAL_MODEL_PATH)
+        )
+
+    if not LOCAL_FEATURES_PATH.exists():
+        s3.download_file(
+            S3_BUCKET,
+            FEATURES_FILE,
+            str(LOCAL_FEATURES_PATH)
+        )
+
+    model = joblib.load(LOCAL_MODEL_PATH)
+    feature_names = joblib.load(LOCAL_FEATURES_PATH)
+
     return model, feature_names
 
-model, FEATURE_NAMES = load_model_and_features()
 
+model, FEATURE_NAMES = load_model_and_features()
 
 # ===============================
 # UI HEADER
