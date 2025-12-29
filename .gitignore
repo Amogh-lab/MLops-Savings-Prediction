@@ -21,3 +21,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# ML model artifacts (stored in S3)
+*.joblib
+*.pkl
