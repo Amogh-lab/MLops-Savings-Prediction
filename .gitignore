@@ -25,3 +25,4 @@ Thumbs.db
 # ML model artifacts (stored in S3)
 *.joblib
 *.pkl
+k8s/secret.yaml

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mlops-savings-config
+data:
+  AWS_REGION: ap-south-1
+  MODEL_BUCKET: mlops-savings-models-joblib
+  MODEL_VERSION: v1

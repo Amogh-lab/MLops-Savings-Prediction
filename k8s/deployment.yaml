@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlops-savings-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlops-savings-app
+  template:
+    metadata:
+      labels:
+        app: mlops-savings-app
+    spec:
+      containers:
+        - name: mlops-savings-app
+          image: 698251583067.dkr.ecr.ap-south-1.amazonaws.com/mlops-savings-app:1.0
+          ports:
+            - containerPort: 8501
+          envFrom:
+            - configMapRef:
+                name: mlops-savings-config
+            - secretRef:
+                name: mlops-savings-secrets
