@@ -1,0 +1,19 @@
+alertmanager:
+  enabled: false
+
+prometheus:
+  prometheusSpec:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 200m
+        memory: 512Mi
+      limits:
+        cpu: 500m
+        memory: 1Gi
+
+grafana:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
