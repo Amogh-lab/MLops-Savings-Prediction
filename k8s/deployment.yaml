@@ -4,6 +4,8 @@ metadata:
   name: mlops-savings-app
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: mlops-savings-app
