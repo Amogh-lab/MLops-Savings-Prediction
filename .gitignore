@@ -26,3 +26,4 @@ Thumbs.db
 *.joblib
 *.pkl
 k8s/secret.yaml
+commands.txt

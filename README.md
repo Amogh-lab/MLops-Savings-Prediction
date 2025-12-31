@@ -1,0 +1,3 @@
+# MLOps Savings Prediction System
+
+This project implements an end-to-end MLOps pipeline for deploying a machine learning–based savings prediction application in a cloud-native environment. The system uses a Streamlit web application for inference, containerized with Docker, deployed on Kubernetes using AWS EKS, and automated through a CI/CD pipeline built with GitHub Actions. Machine learning model artifacts are stored separately in Amazon S3, container images are managed in Amazon ECR, and the application is exposed via a Kubernetes LoadBalancer. The project demonstrates real-world MLOps practices including model–code separation, automated deployments, Kubernetes orchestration, monitoring with Prometheus and Grafana, and cloud cost awareness.
