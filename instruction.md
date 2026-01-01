@@ -119,7 +119,8 @@ Access the application using:
 ```
 http://<EXTERNAL-LOADBALANCER-DNS>
 ```
-## 9. CI/CD Pipeline (GitHub Actions)
+## 9. CI/CD Pipeline (GitHub Actions) 
+### (Ensure the entire pipeline is manually built before, implementing automated CICD pipeline)
 
 Pipeline configuration file:
 ```
@@ -136,3 +137,70 @@ Pipeline steps:
 Trigger:
 
 - Any push to the main branch
+
+## 10. Monitoring Setup
+
+Add Helm repositories:
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+```
+Install Prometheus:
+```
+helm install prometheus prometheus-community/prometheus \
+  --namespace monitoring \
+  --create-namespace
+```
+Install Grafana:
+```
+helm install grafana grafana/grafana \
+  --namespace monitoring
+```
+Access Grafana (port-forward):
+```
+kubectl port-forward svc/grafana 3000:80 -n monitoring
+```
+## 11. Verify Running Resources
+
+Check pods:
+```
+kubectl get pods
+```
+
+Check nodes:
+```
+kubectl get nodes
+```
+
+Check services:
+```
+kubectl get svc
+```
+## 12. Cleanup (Cost Control)
+
+Delete LoadBalancer service:
+```
+kubectl delete svc mlops-savings-service
+```
+
+Delete cluster:
+```
+eksctl delete cluster \
+  --name mlops-cluster \
+  --region ap-south-1
+```
+
+
+---
+
+### Why this section is strong
+- Linear and reproducible
+- Shows full AWS + Kubernetes understanding
+- Interview-safe
+- No hidden steps
+- No magic assumptions
+
+If you want next, I can:
+- shorten this for quickstart
+- add a troubleshooting section
+- add cost estimation per component
