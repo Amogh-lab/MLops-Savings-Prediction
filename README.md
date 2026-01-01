@@ -7,6 +7,7 @@ are stored separately in Amazon S3, container images are managed in Amazon ECR, 
 LoadBalancer. The project demonstrates real-world MLOps practices including model–code separation, automated deployments, 
 Kubernetes orchestration, monitoring with Prometheus and Grafana, and cloud cost awareness.
 
+[Instruction for implementation](instruction.md)
 ## Tech Stack
 
 ### Cloud & Infrastructure
