@@ -16,6 +16,7 @@ Kubernetes orchestration, monitoring with Prometheus and Grafana, and cloud cost
 - Amazon EC2 (Worker Nodes)
 - Amazon S3 (Model Artifact Storage)
 - Amazon ECR (Container Registry)
+- Amazon ELB
 
 ### Containerization & Orchestration
 - Docker
